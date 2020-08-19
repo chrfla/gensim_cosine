@@ -818,6 +818,40 @@ def cossim(vec1, vec2):
     result /= vec1len * vec2len  # rescale by vector lengths
     return result
 
+def cosine_distance(set1, set2):
+
+    """Calculate Cosine distance between two sets.
+
+    Parameters
+    ----------
+    set1 : set
+        Input set.
+    set2 : set
+        Input set.
+
+    Returns
+    -------
+    float
+        Cosine distance between `set1` and `set2`.
+        Value in range `[0, 1]`, where 0 is min distance (max similarity) and 1 is max distance (min similarity).
+    """
+  
+    rvector = set1.union(set2)
+    for w in rvector:
+        if w in set1: l1.append(1)
+        else: l1.append(0)
+        if w in set2: l2.append(1)
+        else: l2.append(0)
+    c = 0
+
+    # cosine formula
+    for i in range(len(rvector)):
+            c+= l1[i]*l2[i]
+    cosine = c / float((sum(l1)*sum(l2))**0.5)
+
+    return 1 - cosine
+
+
 
 @deprecated(
     "Function will be removed in 4.0.0, use "
