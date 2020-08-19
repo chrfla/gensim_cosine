@@ -98,7 +98,7 @@ from collections import defaultdict
 from gensim import interfaces, utils, matutils
 from gensim.matutils import (
     kullback_leibler, hellinger, jaccard_distance, jensen_shannon,
-    dirichlet_expectation, logsumexp, mean_absolute_difference
+    dirichlet_expectation, logsumexp, mean_absolute_difference, cosine_distance
 )
 from gensim.models import basemodel, CoherenceModel
 from gensim.models.callbacks import Callback
@@ -1441,7 +1441,8 @@ class LdaModel(interfaces.TransformationABC, basemodel.BaseTopicModel):
             "kullback_leibler": kullback_leibler,
             "hellinger": hellinger,
             "jaccard": jaccard_distance,
-            "jensen_shannon": jensen_shannon
+            "jensen_shannon": jensen_shannon,
+            'cosine': cosine_distance
         }
 
         if distance not in distances:
